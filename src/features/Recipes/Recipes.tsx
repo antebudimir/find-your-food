@@ -1,24 +1,24 @@
 import { RecipesContainer } from './Recipes style';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import RecipeSummary from '../RecipeElements/RecipeSummary/RecipeSummary';
+import RecipeSummary from 'features/RecipeSummary/RecipeSummary';
 import Message from 'components/Elements/Message/Message';
 import Spinner from 'components/Elements/Spinner/Spinner';
+import useAxios from 'hooks/useAxios';
 
-interface RecipesProps {
-	searchTerm: string;
-	recipes: RecipesCollection[];
-	setRecipes: Function;
+interface SearchProps {
+	searchTerm?: string;
 }
 
-interface RecipesCollection {
-	recipe: RecipeDetails;
+interface RecipeProps {
+	recipe: RecipeArray;
 }
 
-interface RecipeDetails {
+interface RecipeArray {
 	uri: string;
 	label: string;
 	images: ImagesProps;
+	mealType: string;
+	ingredientLines: string[];
+	totalTime: string;
 }
 
 interface ImagesProps {
@@ -29,59 +29,42 @@ interface ImageSource {
 	url: string;
 }
 
-interface ResponseProps {
-	hits: []; // works whatever I put here. Why??
-}
+// Getting CORS error when using .env variables
+// const APP_ID = process.env.REACT_APP_EDAMAM_ID;
+// const APP_KEY = process.env.REACT_APP_EDAMAM_KEY;
+const APP_ID = '548667f6';
+const APP_KEY = '2f9fdc0a12e13af8ed2b0ba5c5deb2ef';
 
-const APP_ID = '42edf3ff',
-	APP_KEY = '6a34d46d87fae6291096de9c0d483ce8';
+const Recipes = ({ searchTerm }: SearchProps) => {
+	const endpoint = `https://api.edamam.com/api/recipes/v2?type=public&q=${searchTerm}&app_id=${APP_ID}&app_key=${APP_KEY}`,
+		{ data, error, loading } = useAxios(endpoint, []);
 
-const Recipes = ({ searchTerm, recipes, setRecipes }: RecipesProps) => {
-	const [loading, setLoading] = useState(false),
-		[error, setError] = useState('');
-
-	const endpoint = 'https://api.edamam.com/api/recipes/v2',
-		query = `?type=public&q=${searchTerm}&app_id=${APP_ID}&app_key=${APP_KEY}`;
-
-	useEffect(() => {
-		const getRecipes = async () => {
-			setLoading(true);
-
-			try {
-				const { data } = await axios.get<ResponseProps>(endpoint + query);
-				console.log(data.hits);
-				setRecipes(data.hits);
-			} catch (error: any) {
-				setError(error.message);
-			} finally {
-				setLoading(false);
-			}
-		};
-		getRecipes();
-	}, [query, setRecipes]);
-
-	const renderRecipes = recipes.map((recipe) => {
-		const details = recipe.recipe,
-			uniqueKey = details.uri.slice(-32);
-
+	const renderRecipes = data.map((recipe: RecipeProps) => {
+		const singleRecipe = recipe.recipe,
+			uniqueKey = singleRecipe.uri.slice(-32),
+			{ label, images, mealType, ingredientLines, totalTime } = singleRecipe;
 		return (
 			<RecipeSummary
 				key={uniqueKey}
-				label={details.label}
-				image={details.images.REGULAR.url}
-				recipeId={uniqueKey}
+				label={label}
+				image={images.REGULAR.url}
+				mealType={mealType}
+				ingredientLines={ingredientLines}
+				totalTime={totalTime}
 			/>
 		);
 	});
 
 	return (
-		<RecipesContainer>
-			{loading && <Spinner />}
+		<>
+			<RecipesContainer>
+				{loading && <Spinner />}
 
-			{error && <Message warning messageText={error} />}
+				{error && <Message warning messageText={error} />}
 
-			{recipes.length > 0 && renderRecipes}
-		</RecipesContainer>
+				{data.length > 0 && renderRecipes}
+			</RecipesContainer>
+		</>
 	);
 };
 

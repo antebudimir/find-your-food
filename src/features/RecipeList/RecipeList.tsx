@@ -6,12 +6,11 @@ interface RecipeListProps {
 	detailsList?: string | ReactNode[];
 }
 
-const RecipeList = ({ label = '', detailsList = '' }: RecipeListProps) => {
+const RecipeList = ({ label, detailsList }: RecipeListProps) => {
 	return (
 		<RecipeListContainer>
-			<>
-				<RecipeListText>{label}:</RecipeListText> {detailsList}
-			</>
+			<RecipeListText>{label ? label : 'Title not available'}:</RecipeListText>{' '}
+			{detailsList ? detailsList : ''}
 		</RecipeListContainer>
 	);
 };

@@ -5,10 +5,13 @@ interface RecipeLineProps {
 	recipeDetail?: string | string[];
 }
 
-const RecipeLine = ({ label = '', recipeDetail = '' }: RecipeLineProps) => {
+const RecipeLine = ({ label, recipeDetail }: RecipeLineProps) => {
 	return (
 		<RecipeDetailContainer>
-			<RecipeDetailText>{label}:</RecipeDetailText> {recipeDetail}
+			<RecipeDetailText>
+				{label ? label : 'Title not available'}:
+			</RecipeDetailText>{' '}
+			{recipeDetail ? recipeDetail : ''}
 		</RecipeDetailContainer>
 	);
 };

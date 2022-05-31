@@ -17,9 +17,11 @@ const SearchForm = ({ setSearchTerm }: SearchFormProps) => {
 	const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		setSearchTerm(input);
-		setInput('');
-		navigate('/recipes');
+		if (input !== '') {
+			setSearchTerm(input);
+			navigate('/recipes');
+			setInput('');
+		}
 	};
 
 	return (
