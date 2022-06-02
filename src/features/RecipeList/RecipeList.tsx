@@ -1,7 +1,7 @@
 import { RecipeListContainer, RecipeListText } from './RecipeList.style';
 import { ReactNode } from 'react';
 
-interface RecipeListProps {
+export interface RecipeListProps {
 	label?: string;
 	detailsList?: string | ReactNode[];
 }
