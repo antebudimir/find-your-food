@@ -4,6 +4,7 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Router } from 'react-router-dom';
+import TestRenderer from 'react-test-renderer';
 import { createMemoryHistory } from 'history';
 import Header from 'components/Layout/Header/Header';
 
@@ -44,5 +45,21 @@ describe('<Header />', () => {
 		const HeaderLink = screen.getByTitle('Go back to the start page');
 		userEvent.click(HeaderLink);
 		expect(HeaderLink.getAttribute('href')).toBe('/');
+	});
+
+	test('if the Component matches snapshot', () => {
+		const history = createMemoryHistory();
+		history.push = jest.fn();
+
+		const component = TestRenderer.create(
+			<Router location={history.location} navigator={history}>
+				<ThemeProvider theme={variables}>
+					<Header />
+				</ThemeProvider>
+				,
+			</Router>,
+		);
+		let tree = component.toJSON();
+		expect(tree).toMatchSnapshot();
 	});
 });

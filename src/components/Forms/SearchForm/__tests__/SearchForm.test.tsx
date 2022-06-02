@@ -2,33 +2,52 @@ import { ThemeProvider } from 'styled-components';
 import { variables } from 'styles/variables';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import { Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
+import TestRenderer from 'react-test-renderer';
+import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import SearchForm from '../SearchForm';
 
 // Render
-test('Input field and button render correctly', () => {
-	const history = createMemoryHistory();
-	history.push = jest.fn();
-	const setSearchTerm = jest.fn();
+describe('<SearchForm /> component', () => {
+	test('Input field and button render correctly', () => {
+		const history = createMemoryHistory();
+		history.push = jest.fn();
+		const setSearchTerm = jest.fn();
 
-	render(
-		<Router location={history.location} navigator={history}>
-			<ThemeProvider theme={variables}>
-				<SearchForm setSearchTerm={setSearchTerm} />,
-			</ThemeProvider>
-			,
-		</Router>,
-	);
+		const { container, asFragment, rerender, debug, baseElement, ...queries } =
+			render(
+				<Router location={history.location} navigator={history}>
+					<ThemeProvider theme={variables}>
+						<SearchForm setSearchTerm={setSearchTerm} />
+					</ThemeProvider>
+				</Router>,
+			);
 
-	const input = screen.getByPlaceholderText('Enter an ingredient');
-	expect(input).toBeInTheDocument(); // vs. expect(input).toBeTruthy(); Ivan?
-	expect(input).toHaveAttribute('type', 'search');
+		const input = screen.getByPlaceholderText('Enter an ingredient');
+		expect(input).toBeInTheDocument();
+		expect(input).toHaveAttribute('type', 'search');
 
-	const searchButton = screen.getByTitle('Search for meals');
-	expect(searchButton).toBeInTheDocument();
-	expect(searchButton).toHaveAttribute('type', 'submit');
+		const searchButton = screen.getByTitle('Search for meals');
+		expect(searchButton).toBeInTheDocument();
+		expect(searchButton).toHaveAttribute('type', 'submit');
+	});
+
+	test('if the Component matches snapshot', () => {
+		const history = createMemoryHistory();
+		history.push = jest.fn();
+		const setSearchTerm = jest.fn();
+
+		const component = TestRenderer.create(
+			<Router location={history.location} navigator={history}>
+				<ThemeProvider theme={variables}>
+					<SearchForm setSearchTerm={setSearchTerm} />
+				</ThemeProvider>
+			</Router>,
+		);
+		let tree = component.toJSON();
+		expect(tree).toMatchSnapshot();
+	});
 });
 
 // Input field
@@ -41,9 +60,8 @@ describe('Input field', () => {
 		render(
 			<Router location={history.location} navigator={history}>
 				<ThemeProvider theme={variables}>
-					<SearchForm setSearchTerm={setSearchTerm} />,
+					<SearchForm setSearchTerm={setSearchTerm} />
 				</ThemeProvider>
-				,
 			</Router>,
 		);
 
@@ -64,9 +82,8 @@ describe('Search button', () => {
 			render(
 				<Router location={history.location} navigator={history}>
 					<ThemeProvider theme={variables}>
-						<SearchForm setSearchTerm={setSearchTerm} />,
+						<SearchForm setSearchTerm={setSearchTerm} />
 					</ThemeProvider>
-					,
 				</Router>,
 			);
 
@@ -82,20 +99,19 @@ describe('Search button', () => {
 			history.push = jest.fn();
 			const setSearchTerm = jest.fn();
 
-			// Ivan, how to test redirect?
-			// const mockedUseNavigate = jest.fn();
+			// How to test redirect? This doesn't work.
+			const mockedUseNavigate = jest.fn();
 
-			// jest.mock('react-router-dom', () => ({
-			// 	...jest.requireActual('react-router-dom'),
-			// 	useNavigate: () => mockedUseNavigate,
-			// }));
+			jest.mock('react-router-dom', () => ({
+				...jest.requireActual('react-router-dom'),
+				useNavigate: () => mockedUseNavigate,
+			}));
 
 			render(
 				<Router location={history.location} navigator={history}>
 					<ThemeProvider theme={variables}>
-						<SearchForm setSearchTerm={setSearchTerm} />,
+						<SearchForm setSearchTerm={setSearchTerm} />
 					</ThemeProvider>
-					,
 				</Router>,
 			);
 
@@ -106,7 +122,7 @@ describe('Search button', () => {
 			userEvent.click(searchButton);
 			expect(setSearchTerm).toHaveBeenCalled();
 			expect(searchInput).toBeEmptyDOMElement();
-			// expect(mockedUseNavigate).toHaveBeenCalledTimes(1);,
+			expect(mockedUseNavigate).toHaveBeenCalledTimes(1);
 		});
 	});
 });

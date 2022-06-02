@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Spinner /> component if the Component matches snapshot 1`] = `
+<img
+  alt="Loading spinner"
+  className="sc-bczRLJ dyjCXn"
+  src="spinner.svg"
+/>
+`;

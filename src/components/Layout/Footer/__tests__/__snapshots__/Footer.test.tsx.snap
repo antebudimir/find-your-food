@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> if the Component matches snapshot 1`] = `
+<footer
+  className="sc-bczRLJ gpqEsY"
+>
+  <p
+    className="sc-gsnTZi dqXVBN"
+  >
+    Powered by
+     
+    <a
+      className="sc-dkzDqf cawgEO"
+      href="https://www.edamam.com"
+      title="Go to the Edamam website"
+    >
+      Edamam API
+    </a>
+  </p>
+</footer>
+`;

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> if the Component matches snapshot 1`] = `
+Array [
+  <header
+    className="sc-bczRLJ gXODXG"
+  >
+    <a
+      className="sc-dkzDqf blmpVX"
+      href="/"
+      onClick={[Function]}
+      title="Go back to the start page"
+    >
+      <h1
+        className="sc-gsnTZi jeArRh"
+      >
+        Find Your Food
+      </h1>
+    </a>
+  </header>,
+  ",",
+]
+`;
