@@ -31,7 +31,7 @@ const RecipeSummary = ({
 	}
 
 	return (
-		<RecipeSummaryContainer>
+		<RecipeSummaryContainer data-testid="summary-id">
 			<SummaryTitle>{label ? label : 'Title not available'}</SummaryTitle>
 
 			<SummaryImage

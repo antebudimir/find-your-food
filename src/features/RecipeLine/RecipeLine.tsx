@@ -7,7 +7,7 @@ interface RecipeLineProps {
 
 const RecipeLine = ({ label, recipeDetail }: RecipeLineProps) => {
 	return (
-		<RecipeDetailContainer>
+		<RecipeDetailContainer data-testid="recipe-line">
 			<RecipeDetailText>
 				{label ? label : 'Title not available'}:
 			</RecipeDetailText>{' '}
