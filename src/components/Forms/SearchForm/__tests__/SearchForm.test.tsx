@@ -15,14 +15,13 @@ describe('<SearchForm /> component', () => {
 		history.push = jest.fn();
 		const setSearchTerm = jest.fn();
 
-		const { container, asFragment, rerender, debug, baseElement, ...queries } =
-			render(
-				<Router location={history.location} navigator={history}>
-					<ThemeProvider theme={variables}>
-						<SearchForm setSearchTerm={setSearchTerm} />
-					</ThemeProvider>
-				</Router>,
-			);
+		render(
+			<Router location={history.location} navigator={history}>
+				<ThemeProvider theme={variables}>
+					<SearchForm setSearchTerm={setSearchTerm} />
+				</ThemeProvider>
+			</Router>,
+		);
 
 		const input = screen.getByPlaceholderText('Enter an ingredient');
 		expect(input).toBeInTheDocument();
