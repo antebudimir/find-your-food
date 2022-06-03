@@ -99,14 +99,6 @@ describe('Search button', () => {
 			history.push = jest.fn();
 			const setSearchTerm = jest.fn();
 
-			// How to test redirect? This doesn't work.
-			const mockedUseNavigate = jest.fn();
-
-			jest.mock('react-router-dom', () => ({
-				...jest.requireActual('react-router-dom'),
-				useNavigate: () => mockedUseNavigate,
-			}));
-
 			render(
 				<Router location={history.location} navigator={history}>
 					<ThemeProvider theme={variables}>
@@ -122,7 +114,7 @@ describe('Search button', () => {
 			userEvent.click(searchButton);
 			expect(setSearchTerm).toHaveBeenCalled();
 			expect(searchInput).toBeEmptyDOMElement();
-			expect(mockedUseNavigate).toHaveBeenCalledTimes(1);
+			expect(history.push).toHaveBeenCalled();
 		});
 	});
 });
