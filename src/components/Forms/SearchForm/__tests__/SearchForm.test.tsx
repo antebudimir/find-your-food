@@ -69,7 +69,7 @@ describe('Input field', () => {
 
 // Search button
 describe('Search button', () => {
-	it('should render with a red background', async () => {
+	it('should render with a red background', () => {
 		renderSearchForm(props);
 
 		const searchButton = screen.getByTitle('Search for meals');
