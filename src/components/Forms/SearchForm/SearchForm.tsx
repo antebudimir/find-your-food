@@ -6,7 +6,7 @@ import InputGroup, {
 } from 'components/Elements/InputGroup/InputGroup';
 import Button, { ButtonType } from 'components/Elements/Button/Button';
 
-interface SearchFormProps {
+export interface SearchFormProps {
 	setSearchTerm: (searchTerm: string) => void;
 }
 
