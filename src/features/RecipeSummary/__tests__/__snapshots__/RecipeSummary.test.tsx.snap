@@ -1,70 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<RecipeSummary /> component if the Component matches snapshot 1`] = `
-<section
-  className="sc-eCYdqJ hSdRLg"
-  data-testid="summary-id"
->
-  <h2
-    className="sc-jSMfEi eAYKRK"
+<DocumentFragment>
+  <section
+    class="sc-eCYdqJ hSdRLg"
   >
-    Title not available
-  </h2>
-  <img
-    alt="Image description not available"
-    className="sc-gKXOVf jQmnMb"
-    src="Photo not available"
-  />
-  <p
-    className="sc-bczRLJ hHaKtq"
-    data-testid="recipe-line"
-  >
-    <span
-      className="sc-gsnTZi iqEmM"
+    <h2
+      class="sc-jSMfEi eAYKRK"
+      data-testid="summary-title"
     >
-      Meal type
-      :
-    </span>
-     
-    No info
-  </p>
-  <p
-    className="sc-bczRLJ hHaKtq"
-    data-testid="recipe-line"
-  >
-    <span
-      className="sc-gsnTZi iqEmM"
+      Test label
+    </h2>
+    <img
+      alt="Test label"
+      class="sc-gKXOVf jQmnMb"
+      src="wwww.imagesource.com/image-1"
+    />
+    <p
+      class="sc-bczRLJ hHaKtq"
+      data-testid="recipe-line"
     >
-      Meal type
-      :
-    </span>
-     
-    No info
-  </p>
-  <ul
-    className="sc-dkzDqf gyuaL"
-  >
-    <span
-      className="sc-hKMtZM YTvug"
+      <span
+        class="sc-gsnTZi iqEmM"
+      >
+        Meal type:
+      </span>
+       Exotic meal
+    </p>
+    <ul
+      class="sc-dkzDqf gyuaL"
+      data-testid="recipe-list"
     >
-      Ingredients
-      :
-    </span>
-     
-    No info
-  </ul>
-  <p
-    className="sc-bczRLJ hHaKtq"
-    data-testid="recipe-line"
-  >
-    <span
-      className="sc-gsnTZi iqEmM"
+      <span
+        class="sc-hKMtZM YTvug"
+      >
+        Ingredients:
+      </span>
+       
+      <li>
+        Ingredient 1, Ingredient 2
+      </li>
+    </ul>
+    <p
+      class="sc-bczRLJ hHaKtq"
+      data-testid="recipe-line"
     >
-      Total time
-      :
-    </span>
-     
-    No info
-  </p>
-</section>
+      <span
+        class="sc-gsnTZi iqEmM"
+      >
+        Total time:
+      </span>
+       20min
+    </p>
+  </section>
+</DocumentFragment>
 `;

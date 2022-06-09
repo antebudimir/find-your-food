@@ -1,7 +1,7 @@
 import { ThemeProvider } from 'styled-components';
 import { variables } from 'styles/variables';
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import RecipeList, { RecipeListProps } from '../RecipeList';
 
 const props: RecipeListProps = {
@@ -10,17 +10,28 @@ const props: RecipeListProps = {
 };
 
 const renderRecipeList = (props: RecipeListProps) => {
-	const { asFragment, container } = render(
+	const wrapper = document.createElement('section');
+	wrapper.classList.add('section-wrapper');
+
+	const { asFragment } = render(
 		<ThemeProvider theme={variables}>
 			<RecipeList {...props} />
 		</ThemeProvider>,
+		{ container: document.body.appendChild(wrapper) },
 	);
 
-	return { fragment: asFragment(), container };
+	return { fragment: asFragment() };
 };
 
 describe('<RecipeList /> component', () => {
-	test('if it renders correctly', () => {
+	test('if props are being passed', () => {
+		renderRecipeList(props);
+
+		const recipeList = screen.getByTestId('recipe-list');
+		expect(recipeList).toHaveTextContent('Test label: Test detail');
+	});
+
+	test('if the <RecipeList /> matches the snapshot', () => {
 		const { fragment } = renderRecipeList(props);
 		expect(fragment).toMatchSnapshot();
 	});

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Recipes /> component if the Component matches snapshot 1`] = `
+<DocumentFragment>
+  <section
+    class="sc-bczRLJ eHfXVe"
+  >
+    <img
+      alt="Loading spinner"
+      class="sc-jqUVSM dPmbcW"
+      src="spinner.svg"
+    />
+  </section>
+</DocumentFragment>
+`;

@@ -1,3 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<RecipeLine /> component if the Component matches snapshot 1`] = `null`;
+exports[`<RecipeLine /> component if the Component matches snapshot 1`] = `
+<DocumentFragment>
+  <p
+    class="sc-bczRLJ hHaKtq"
+    data-testid="recipe-line"
+  >
+    <span
+      class="sc-gsnTZi iqEmM"
+    >
+      Test label:
+    </span>
+     Recipe detail
+  </p>
+</DocumentFragment>
+`;

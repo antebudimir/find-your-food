@@ -1,9 +1,8 @@
 import { ThemeProvider } from 'styled-components';
 import { variables } from 'styles/variables';
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { render, screen, rerender } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import TestRenderer from 'react-test-renderer';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import SearchForm, { SearchFormProps } from '../SearchForm';
@@ -15,7 +14,7 @@ const props: SearchFormProps = {
 const renderSearchForm = (props: SearchFormProps) => {
 	const history = createMemoryHistory();
 
-	const { asFragment, container } = render(
+	const { asFragment } = render(
 		<Router location={history.location} navigator={history}>
 			<ThemeProvider theme={variables}>
 				<SearchForm {...props} />
@@ -23,7 +22,7 @@ const renderSearchForm = (props: SearchFormProps) => {
 		</Router>,
 	);
 
-	return { fragment: asFragment(), container, history };
+	return { fragment: asFragment(), history };
 };
 
 // Render
@@ -41,18 +40,8 @@ describe('<SearchForm /> component', () => {
 	});
 
 	test('if the Component matches snapshot', () => {
-		const history = createMemoryHistory();
-		const setSearchTerm = jest.fn();
-
-		const component = TestRenderer.create(
-			<Router location={history.location} navigator={history}>
-				<ThemeProvider theme={variables}>
-					<SearchForm setSearchTerm={setSearchTerm} />
-				</ThemeProvider>
-			</Router>,
-		);
-		let searchForm = component.toJSON();
-		expect(searchForm).toMatchSnapshot();
+		const { fragment } = renderSearchForm(props);
+		expect(fragment).toMatchSnapshot();
 	});
 });
 
@@ -78,18 +67,20 @@ describe('Search button', () => {
 
 	describe('Empty input field', () => {
 		test('Does not submit the form', () => {
-			const { history } = renderSearchForm(props);
+			const { history } = renderSearchForm(props),
+				baseURL = '/';
 
 			const searchButton = screen.getByTitle('Search for meals');
 			userEvent.click(searchButton);
 			expect(props.setSearchTerm).not.toHaveBeenCalled();
-			expect(history.location.pathname).not.toContain('/recipes');
+			expect(history.location.pathname).not.toMatch(baseURL + 'recipes');
 		});
 	});
 
 	describe('User typed a query in the input field', () => {
 		test('Submits the form, resets the input field and navigates to the recipes route', () => {
-			const { history } = renderSearchForm(props);
+			const { history } = renderSearchForm(props),
+				baseURL = '/';
 
 			const searchInput = screen.getByPlaceholderText('Enter an ingredient');
 			userEvent.type(searchInput, 'Recipe search');
@@ -98,7 +89,7 @@ describe('Search button', () => {
 			userEvent.click(searchButton);
 			expect(props.setSearchTerm).toHaveBeenCalled();
 			expect(searchInput).toBeEmptyDOMElement();
-			expect(history.location.pathname).toContain('/recipes');
+			expect(history.location.pathname).toMatch(baseURL + 'recipes');
 		});
 	});
 });

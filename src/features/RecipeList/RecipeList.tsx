@@ -8,7 +8,7 @@ export interface RecipeListProps {
 
 const RecipeList = ({ label, detailsList }: RecipeListProps) => {
 	return (
-		<RecipeListContainer>
+		<RecipeListContainer data-testid="recipe-list">
 			<RecipeListText>{label ? label : 'Title not available'}:</RecipeListText>{' '}
 			{detailsList ? detailsList : ''}
 		</RecipeListContainer>

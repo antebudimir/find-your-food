@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<RecipeList /> component if it renders correctly 1`] = `
+exports[`<RecipeList /> component if the <RecipeList /> matches the snapshot 1`] = `
 <DocumentFragment>
   <ul
     class="sc-bczRLJ hHaKtq"
+    data-testid="recipe-list"
   >
     <span
       class="sc-gsnTZi iqEmM"

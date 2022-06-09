@@ -5,9 +5,15 @@ import {
 	SummaryImage,
 	SummaryTitle,
 } from './RecipeSummary.style';
-import { v4 as uuidv4 } from 'uuid';
 
-interface RecipeSummaryProps {
+// create a list
+export const createList = (items: string[]) => {
+	const list = items.map((item) => {
+		return <li key={item}>{item}</li>;
+	});
+	return list;
+};
+export interface RecipeSummaryProps {
 	label?: string;
 	image?: string;
 	mealType?: string;
@@ -22,27 +28,17 @@ const RecipeSummary = ({
 	ingredientLines,
 	totalTime,
 }: RecipeSummaryProps) => {
-	// create a list
-	function createList(items: string[]) {
-		const list = items.map((item) => {
-			return <li key={uuidv4()}>{item}</li>;
-		});
-		return list;
-	}
-
 	return (
-		<RecipeSummaryContainer data-testid="summary-id">
-			<SummaryTitle>{label ? label : 'Title not available'}</SummaryTitle>
+		<RecipeSummaryContainer>
+			<SummaryTitle data-testid="summary-title">
+				{label ? label : 'Title not available'}
+			</SummaryTitle>
 
 			<SummaryImage
 				imageSource={image ? image : 'Photo not available'}
 				imageAlt={label ? label : 'Image description not available'}
 			/>
 
-			<RecipeLine
-				label="Meal type"
-				recipeDetail={mealType && mealType.length > 0 ? mealType : 'No info'}
-			/>
 			<RecipeLine
 				label="Meal type"
 				recipeDetail={mealType && mealType.length > 0 ? mealType : 'No info'}

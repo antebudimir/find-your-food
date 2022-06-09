@@ -4,7 +4,7 @@ import Message from 'components/Elements/Message/Message';
 import Spinner from 'components/Elements/Spinner/Spinner';
 import useAxios from 'hooks/useAxios';
 
-interface SearchProps {
+export interface SearchProps {
 	searchTerm?: string;
 }
 
@@ -12,7 +12,7 @@ interface RecipeProps {
 	recipe: RecipeArray;
 }
 
-interface RecipeArray {
+export interface RecipeArray {
 	uri: string;
 	label: string;
 	images: ImagesProps;
@@ -29,9 +29,6 @@ interface ImageSource {
 	url: string;
 }
 
-// Getting CORS error when using .env variables
-// const APP_ID = process.env.REACT_APP_EDAMAM_ID;
-// const APP_KEY = process.env.REACT_APP_EDAMAM_KEY;
 const APP_ID = '548667f6';
 const APP_KEY = '2f9fdc0a12e13af8ed2b0ba5c5deb2ef';
 
@@ -43,6 +40,7 @@ const Recipes = ({ searchTerm }: SearchProps) => {
 		const singleRecipe = recipe.recipe,
 			uniqueKey = singleRecipe.uri.slice(-32),
 			{ label, images, mealType, ingredientLines, totalTime } = singleRecipe;
+
 		return (
 			<RecipeSummary
 				key={uniqueKey}
@@ -56,15 +54,13 @@ const Recipes = ({ searchTerm }: SearchProps) => {
 	});
 
 	return (
-		<>
-			<RecipesContainer>
-				{loading && <Spinner />}
+		<RecipesContainer>
+			{loading && <Spinner />}
 
-				{error && <Message warning messageText={error} />}
+			{error && <Message warning messageText={error} />}
 
-				{data.length > 0 && renderRecipes}
-			</RecipesContainer>
-		</>
+			{data.length > 0 && renderRecipes}
+		</RecipesContainer>
 	);
 };
 

@@ -1,6 +1,6 @@
 import { RecipeDetailContainer, RecipeDetailText } from './RecipeLine.style';
 
-interface RecipeLineProps {
+export interface RecipeLineProps {
 	label?: string;
 	recipeDetail?: string | string[];
 }

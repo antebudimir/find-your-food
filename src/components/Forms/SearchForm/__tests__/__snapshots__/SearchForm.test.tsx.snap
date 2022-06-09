@@ -1,37 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<SearchForm /> component if the Component matches snapshot 1`] = `
-<form
-  className="sc-bczRLJ cYufwz"
-  onSubmit={[Function]}
->
-  <div
-    className="sc-gsnTZi"
+<DocumentFragment>
+  <form
+    class="sc-bczRLJ cYufwz"
   >
-    <label
-      className="sc-dkzDqf jMnMkt"
-      htmlFor="search-input"
+    <div
+      class="sc-gsnTZi"
     >
-      Enter an ingredient
-    </label>
-    <input
-      className="sc-hKMtZM jwztwx"
-      id="search-input"
-      name="search-input"
-      onChange={[Function]}
-      placeholder="Enter an ingredient"
-      required={true}
-      type="search"
+      <label
+        class="sc-dkzDqf jMnMkt"
+        for="search-input"
+      >
+        Enter an ingredient
+      </label>
+      <input
+        class="sc-hKMtZM jwztwx"
+        id="search-input"
+        name="search-input"
+        placeholder="Enter an ingredient"
+        required=""
+        type="search"
+        value=""
+      />
+    </div>
+    <button
+      class="sc-eCYdqJ dKmmch"
+      title="Search for meals"
+      type="submit"
       value=""
-    />
-  </div>
-  <button
-    className="sc-eCYdqJ dKmmch"
-    title="Search for meals"
-    type="submit"
-    value=""
-  >
-    Search
-  </button>
-</form>
+    >
+      Search
+    </button>
+  </form>
+</DocumentFragment>
 `;

@@ -44,7 +44,7 @@ describe('<Header />', () => {
 
 		const HeaderLink = screen.getByTitle('Go back to the start page');
 		userEvent.click(HeaderLink);
-		expect(HeaderLink.getAttribute('href')).toBe('/');
+		expect(HeaderLink).toHaveAttribute('href', '/');
 	});
 
 	test('if the Component matches snapshot', () => {
