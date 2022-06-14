@@ -18,5 +18,6 @@
 		"noEmit": true,
 		"jsx": "react-jsx"
 	},
-	"include": ["src"]
+	"include": ["src"],
+	"exclude": ["./plugins/**/*", "./typings/**/*", "./built/**/*"] // added to sort the Cypress testing library typings error
 }
