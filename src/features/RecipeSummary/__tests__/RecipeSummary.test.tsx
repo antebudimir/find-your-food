@@ -34,7 +34,7 @@ describe('<RecipeSummary /> component', () => {
 	test('should pass and render title and image props', () => {
 		renderRecipeSummary(props);
 
-		const summaryTitle = screen.getByTestId('summary-title');
+		const summaryTitle = screen.getByTestId('Test label');
 		expect(summaryTitle).toHaveTextContent('Test label');
 
 		const summaryImage = screen.getByAltText('Test label');

@@ -39,6 +39,7 @@ const SearchForm = ({ setSearchTerm }: SearchFormProps) => {
 				buttonType={ButtonType.submit}
 				buttonTitle="Search for meals"
 				buttonText="Search"
+				dataCy="search-button"
 			/>
 		</FormContainer>
 	);

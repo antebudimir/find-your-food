@@ -13,6 +13,7 @@ interface ButtonProps {
 	className?: string;
 	buttonText?: string;
 	buttonValue?: string;
+	dataCy?: string;
 }
 
 const Button = ({
@@ -22,6 +23,7 @@ const Button = ({
 	className = '',
 	buttonText = '',
 	buttonValue = '',
+	dataCy = '',
 }: ButtonProps) => {
 	return (
 		<ButtonContainer
@@ -30,6 +32,7 @@ const Button = ({
 			onClick={handleClick}
 			className={className}
 			value={buttonValue}
+			data-cy={dataCy}
 		>
 			{buttonText}
 		</ButtonContainer>

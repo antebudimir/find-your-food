@@ -7,7 +7,7 @@ exports[`<RecipeSummary /> component if the Component matches snapshot 1`] = `
   >
     <h2
       class="sc-jSMfEi eAYKRK"
-      data-testid="summary-title"
+      data-testid="Test label"
     >
       Test label
     </h2>

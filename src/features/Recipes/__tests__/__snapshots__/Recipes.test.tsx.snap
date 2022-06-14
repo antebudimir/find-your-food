@@ -5,11 +5,120 @@ exports[`<Recipes /> component if the Component matches snapshot 1`] = `
   <section
     class="sc-bczRLJ eHfXVe"
   >
-    <img
-      alt="Loading spinner"
-      class="sc-jqUVSM dPmbcW"
-      src="spinner.svg"
-    />
+    <section
+      class="sc-jSMfEi fhsqYC"
+    >
+      <h2
+        class="sc-gKXOVf iccFfb"
+        data-testid="Test label 1"
+      >
+        Test label 1
+      </h2>
+      <img
+        alt="Test label 1"
+        class="sc-iBkjds jBSSSV"
+        src="image url"
+      />
+      <p
+        class="sc-gsnTZi FuqXk"
+        data-testid="recipe-line"
+      >
+        <span
+          class="sc-dkzDqf IGaFb"
+        >
+          Meal type:
+        </span>
+         breakfast
+      </p>
+      <ul
+        class="sc-hKMtZM bcFPAw"
+        data-testid="recipe-list"
+      >
+        <span
+          class="sc-eCYdqJ eqqeCB"
+        >
+          Ingredients:
+        </span>
+         
+        <li>
+          Ingredient 1
+        </li>
+        <li>
+          Ingredient 2
+        </li>
+        <li>
+          Ingredient 3
+        </li>
+      </ul>
+      <p
+        class="sc-gsnTZi FuqXk"
+        data-testid="recipe-line"
+      >
+        <span
+          class="sc-dkzDqf IGaFb"
+        >
+          Total time:
+        </span>
+         20min
+      </p>
+    </section>
+    <section
+      class="sc-jSMfEi fhsqYC"
+    >
+      <h2
+        class="sc-gKXOVf iccFfb"
+        data-testid="Test label 2"
+      >
+        Test label 2
+      </h2>
+      <img
+        alt="Test label 2"
+        class="sc-iBkjds jBSSSV"
+        src="image url 2"
+      />
+      <p
+        class="sc-gsnTZi FuqXk"
+        data-testid="recipe-line"
+      >
+        <span
+          class="sc-dkzDqf IGaFb"
+        >
+          Meal type:
+        </span>
+         lunch
+      </p>
+      <ul
+        class="sc-hKMtZM bcFPAw"
+        data-testid="recipe-list"
+      >
+        <span
+          class="sc-eCYdqJ eqqeCB"
+        >
+          Ingredients:
+        </span>
+         
+        <li>
+          Ingredient 1
+        </li>
+        <li>
+          Ingredient 2
+        </li>
+        <li>
+          Ingredient 3
+        </li>
+      </ul>
+      <p
+        class="sc-gsnTZi FuqXk"
+        data-testid="recipe-line"
+      >
+        <span
+          class="sc-dkzDqf IGaFb"
+        >
+          Total time:
+        </span>
+         40min
+      </p>
+    </section>
   </section>
 </DocumentFragment>
 `;

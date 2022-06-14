@@ -8,35 +8,14 @@ export interface SearchProps {
 	searchTerm?: string;
 }
 
-interface RecipeProps {
-	recipe: RecipeArray;
-}
-
-export interface RecipeArray {
-	uri: string;
-	label: string;
-	images: ImagesProps;
-	mealType: string;
-	ingredientLines: string[];
-	totalTime: string;
-}
-
-interface ImagesProps {
-	REGULAR: ImageSource;
-}
-
-interface ImageSource {
-	url: string;
-}
-
 const APP_ID = '548667f6';
 const APP_KEY = '2f9fdc0a12e13af8ed2b0ba5c5deb2ef';
 
 const Recipes = ({ searchTerm }: SearchProps) => {
 	const endpoint = `https://api.edamam.com/api/recipes/v2?type=public&q=${searchTerm}&app_id=${APP_ID}&app_key=${APP_KEY}`,
-		{ data, error, loading } = useAxios(endpoint, []);
+		{ data, error, loading } = useAxios(endpoint);
 
-	const renderRecipes = data.map((recipe: RecipeProps) => {
+	const renderRecipes = data.map((recipe) => {
 		const singleRecipe = recipe.recipe,
 			uniqueKey = singleRecipe.uri.slice(-32),
 			{ label, images, mealType, ingredientLines, totalTime } = singleRecipe;

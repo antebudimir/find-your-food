@@ -7,7 +7,7 @@ interface MessageTextProps {
 }
 
 const Message = ({ messageText }: MessageTextProps) => {
-	return <Text>{messageText}</Text>;
+	return <Text data-testid="message">{messageText}</Text>;
 };
 
 export default Message;

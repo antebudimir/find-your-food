@@ -30,7 +30,7 @@ const RecipeSummary = ({
 }: RecipeSummaryProps) => {
 	return (
 		<RecipeSummaryContainer>
-			<SummaryTitle data-testid="summary-title">
+			<SummaryTitle data-testid={label}>
 				{label ? label : 'Title not available'}
 			</SummaryTitle>
 

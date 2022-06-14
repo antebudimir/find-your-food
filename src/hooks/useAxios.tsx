@@ -1,8 +1,27 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const useAxios = (endpoint: string, initialValue: []) => {
-	const [data, setData] = useState(initialValue),
+export interface RecipeProps {
+	recipe: {
+		label: string;
+		images: ImagesProps;
+		mealType: string;
+		ingredientLines: string[];
+		totalTime: string;
+		uri: string;
+	};
+}
+
+export interface ImagesProps {
+	REGULAR: ImageSource;
+}
+
+export interface ImageSource {
+	url: string;
+}
+
+const useAxios = (endpoint: string) => {
+	const [data, setData] = useState<RecipeProps[] | []>([]),
 		[error, setError] = useState(''),
 		[loading, setLoading] = useState(true);
 
@@ -14,9 +33,11 @@ const useAxios = (endpoint: string, initialValue: []) => {
 				const { data } = await axios(endpoint, {
 					signal: controller.signal,
 				});
-				setData(data.hits);
+				const response = data.hits as RecipeProps[];
+				setData(response);
 			} catch {
 				setError('An error occured.');
+				setData([]);
 			} finally {
 				setLoading(false);
 			}
