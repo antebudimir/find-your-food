@@ -8,11 +8,12 @@ import RecipeSummary, {
 } from '../RecipeSummary';
 
 const props: RecipeSummaryProps = {
-	label: 'Test label',
+	recipeLabel: 'Test label',
 	image: 'wwww.imagesource.com/image-1',
 	mealType: 'Exotic meal',
 	ingredientLines: ['Ingredient 1, Ingredient 2'],
 	totalTime: '20',
+	uniqueId: '5g1df5g1',
 };
 
 const renderRecipeSummary = (props: RecipeSummaryProps) => {

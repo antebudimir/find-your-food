@@ -23,7 +23,8 @@ const Recipes = ({ searchTerm }: SearchProps) => {
 		return (
 			<RecipeSummary
 				key={uniqueKey}
-				label={label}
+				uniqueId={uniqueKey}
+				recipeLabel={label}
 				image={images.REGULAR.url}
 				mealType={mealType}
 				ingredientLines={ingredientLines}

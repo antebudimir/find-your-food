@@ -1,7 +1,7 @@
 import { ThemeProvider } from 'styled-components';
 import { variables } from 'styles/variables';
 import '@testing-library/jest-dom';
-import { render, screen, rerender } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';

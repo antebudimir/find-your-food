@@ -1,16 +1,21 @@
 import { RecipeDetailContainer, RecipeDetailText } from './RecipeLine.style';
 
 export interface RecipeLineProps {
-	label?: string;
+	lineLabel?: string;
 	recipeDetail?: string | string[];
+	lineId: string;
+	uniqueId: string;
 }
 
-const RecipeLine = ({ label, recipeDetail }: RecipeLineProps) => {
+const RecipeLine = ({
+	lineLabel,
+	recipeDetail,
+	lineId,
+	uniqueId,
+}: RecipeLineProps) => {
 	return (
-		<RecipeDetailContainer data-testid="recipe-line">
-			<RecipeDetailText>
-				{label ? label : 'Title not available'}:
-			</RecipeDetailText>{' '}
+		<RecipeDetailContainer id={lineId} data-testid={`${lineId}-${uniqueId}`}>
+			<RecipeDetailText>{lineLabel}:</RecipeDetailText>{' '}
 			{recipeDetail ? recipeDetail : ''}
 		</RecipeDetailContainer>
 	);

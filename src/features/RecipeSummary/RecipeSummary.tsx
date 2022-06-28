@@ -14,34 +14,39 @@ export const createList = (items: string[]) => {
 	return list;
 };
 export interface RecipeSummaryProps {
-	label?: string;
+	recipeLabel?: string;
 	image?: string;
 	mealType?: string;
 	ingredientLines?: string[];
 	totalTime?: string;
+	uniqueId: string;
 }
 
 const RecipeSummary = ({
-	label,
+	recipeLabel,
 	image,
 	mealType,
 	ingredientLines,
 	totalTime,
+	uniqueId,
 }: RecipeSummaryProps) => {
 	return (
 		<RecipeSummaryContainer>
-			<SummaryTitle data-testid={label}>
-				{label ? label : 'Title not available'}
+			<SummaryTitle data-testid={recipeLabel}>
+				{recipeLabel ? recipeLabel : 'Title not available'}
 			</SummaryTitle>
 
 			<SummaryImage
 				imageSource={image ? image : 'Photo not available'}
-				imageAlt={label ? label : 'Image description not available'}
+				imageAlt={recipeLabel ? recipeLabel : 'Image description not available'}
+				data-testid={image}
 			/>
 
 			<RecipeLine
-				label="Meal type"
+				lineLabel="Meal type"
+				lineId="meal-type"
 				recipeDetail={mealType && mealType.length > 0 ? mealType : 'No info'}
+				uniqueId={uniqueId}
 			/>
 
 			<RecipeList
@@ -51,11 +56,15 @@ const RecipeSummary = ({
 						? createList(ingredientLines)
 						: 'No info'
 				}
+				list="ingredients"
+				uniqueId={uniqueId}
 			/>
 
 			<RecipeLine
-				label="Total time"
+				lineLabel="Total time"
+				lineId="total-time"
 				recipeDetail={totalTime ? totalTime + 'min' : 'No info'}
+				uniqueId={uniqueId}
 			/>
 		</RecipeSummaryContainer>
 	);

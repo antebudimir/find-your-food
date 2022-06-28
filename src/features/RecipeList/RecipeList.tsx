@@ -4,11 +4,18 @@ import { ReactNode } from 'react';
 export interface RecipeListProps {
 	label?: string;
 	detailsList?: string | ReactNode[];
+	uniqueId: string;
+	list: string | undefined;
 }
 
-const RecipeList = ({ label, detailsList }: RecipeListProps) => {
+const RecipeList = ({
+	label,
+	detailsList,
+	uniqueId,
+	list,
+}: RecipeListProps) => {
 	return (
-		<RecipeListContainer data-testid="recipe-list">
+		<RecipeListContainer data-testid={`${list}-${uniqueId}`}>
 			<RecipeListText>{label ? label : 'Title not available'}:</RecipeListText>{' '}
 			{detailsList ? detailsList : ''}
 		</RecipeListContainer>
